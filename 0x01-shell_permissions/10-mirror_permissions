@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod --reference=RRFILE olleh 
+chmod --reference=354 olleh 
