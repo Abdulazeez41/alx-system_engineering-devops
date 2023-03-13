@@ -1,2 +1,2 @@
 #!/bin/bash
-ls(1) -a --format=comma | sort
+ls -p | grep -v / | tr '\n' ','
