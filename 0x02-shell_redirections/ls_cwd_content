@@ -1,0 +1,15 @@
+total 52
+drwxr-xr-x 2 abdulazeez abdulazeez 4096 Mar 13 18:47 .
+drwxr-xr-x 6 abdulazeez abdulazeez 4096 Mar 13 15:29 ..
+-rwxr--r-- 1 abdulazeez abdulazeez   32 Mar 13 16:53 0-hello_world
+-rwxr--r-- 1 abdulazeez abdulazeez   28 Mar 13 17:06 1-confused_smiley
+-rwxr--r-- 1 abdulazeez abdulazeez   28 Mar 13 17:14 2-hellofile
+-rwxr--r-- 1 abdulazeez abdulazeez   39 Mar 13 17:17 3-twofiles
+-rwxr--r-- 1 abdulazeez abdulazeez   35 Mar 13 17:24 4-lastlines
+-rwxr--r-- 1 abdulazeez abdulazeez   35 Mar 13 17:27 5-firstlines
+-rwxr--r-- 1 abdulazeez abdulazeez   36 Mar 13 17:56 6-third_line
+-rwxr--r-- 1 abdulazeez abdulazeez   77 Mar 13 18:44 7-file
+-rwxr--r-- 1 abdulazeez abdulazeez   36 Mar 13 18:47 8-cwd_state
+-rw-r--r-- 1 abdulazeez abdulazeez   34 Mar 13 16:58 README.md
+-rw-r--r-- 1 abdulazeez abdulazeez   12 Mar 13 18:31 \*\\'"Best School"\'\*$\?\*\*\*\*\*:)
+-rw-r--r-- 1 abdulazeez abdulazeez    0 Mar 13 18:47 ls_cwd_content
