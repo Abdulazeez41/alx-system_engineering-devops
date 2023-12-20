@@ -1,6 +1,30 @@
-#!/usr/bin/env bash
-sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
-pkill apache2
-sudo -u nginx service nginx start
+#!/bin/bash
+
+# Update Nginx configuration to run as nginx user
+sed -i 's/user\s*nginx;/user nginx;/' /etc/nginx/nginx.conf
+
+# Update Nginx default site configuration to listen on all active IPs on port 8080
+sed -i '/listen\s*80;/a \    listen 8080;' /etc/nginx/sites-available/default
+
+# Ensure Nginx is running as nginx user
+chown -R nginx:nginx /var/www/html
+
+# Restart Nginx service
+service nginx restart
+
+# Check if Nginx is running as nginx user
+ps auxff | grep "nginx: master process" | grep -q "nginx"
+if [ $? -eq 0 ]; then
+    echo "Nginx is now running as nginx user."
+else
+    echo "Failed to configure Nginx. Please check the configuration."
+fi
+
+# Check if Nginx is listening on port 8080
+nc -z 0 8080
+if [ $? -eq 0 ]; then
+    echo "Nginx is listening on port 8080."
+else
+    echo "Nginx is not listening on port 8080. Please check the configuration."
+fi
+
