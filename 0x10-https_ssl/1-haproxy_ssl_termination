@@ -34,20 +34,26 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 
 # start of parameters for zeeweb.tech
-frontend betascribbles.tech-http-frontend
+frontend www-http
 	bind	 *:80
 	http-request set-header X-Forwarded-Proto http
-	default_backend	 beta-scribbles.tech-backend
+	default_backend	 www-backend
 
 
-frontend  zeeweb.tech-https-frontend
-	bind *:443 ssl crt /etc/ssl/zeeweb.tech.pem
+frontend www-http
+	bind *:443 ssl crt /etc/ssl/www.abdulazeez41.tech.pem
 	http-request set-header X-Forwarded-Proto https
-        default_backend zeeweb.tech-backend
+	acl    letsencrypt-acl path_beg /.well-known/acme-challenge/
+	use_backend letsencrypt-backend if letsencrypt-acl
+        default_backend www-backend
 
 
-backend zeeweb.tech-backend
+backend www-backend
         balance roundrobin
-        server 82202-web-01 100.24.74.197:80 check
-        server 82202-web-02 100.25.147.92:80 check
+	redirect scheme https if !{ ssl_fc }
+        server 55821-web-01 54.144.198.100:80 check
+        server 55821-web-02 18.214.88.163:80 check
+
+backend letsencrypt-backend
+    server letsencrypt 127.0.0.1:54321
 # end of parameters
