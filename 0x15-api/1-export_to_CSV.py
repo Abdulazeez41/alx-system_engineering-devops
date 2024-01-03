@@ -11,23 +11,25 @@ if __name__ == "__main__":
     # Get user ID from command line arguments
     user_id = sys.argv[1]
 
-    # API URL for placeholder data
+    # API URL for JSONPlaceholder
     url = "https://jsonplaceholder.typicode.com/"
 
-    # Fetch user information
+    # Get user information using the provided user ID
     user = requests.get(url + "users/{}".format(user_id)).json()
+
+    # Extract username from user information
     username = user.get("username")
 
-    # Fetch to-do list for the user
+    # Get to-do list for the specified user ID
     todos = requests.get(url + "todos", params={"userId": user_id}).json()
 
-    # Create CSV file and write to it
+    # Open a CSV file for writing
     with open("{}.csv".format(user_id), "w", newline="") as csvfile:
+        # Create a CSV writer
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
-        # Write header row
+        # Write CSV header
         writer.writerow(["User ID", "Username", "Completed", "Title"])
 
-        # Write to-do list information to CSV
-        for t in todos:
-            writer.writerow([user_id, username, t.get("completed"), t.get("title")])
+        # Write each to-do item to the CSV file
+        [writer.writerow([user_id, username, t.get("completed"), t.get("title")]) for t in todos]
